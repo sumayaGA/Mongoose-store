@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Back to index button -->
+    <nav>
+        <a href="/store">Back to Store Index</a>
+    </nav>
+    <div class="container">
+        <h1>
+            <%=product.name%>
+        </h1>
+        <img src="<%=product.img%>" width="500" height="600">
+        <h3>Description: </h3>
+        <p>
+            <%=product.description%>
+        </p>
+        <h2>Price: $<%=product.price%>
+        </h2>
+        <h3>Qty: <%=product.qty%>
+        </h3>
+        <!-- Delete Button -->
+        <form action="/store/<%= product._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="DELETE" />
+            <!-- Edit Button -->
+        </form>
+        <a href="/store/<%=product._id %>/edit"><input type="submit" value="EDIT" /></a>
+
+        <!-- Buy button  -->
+        <% if (product.qty> 0) {%>
+            <form action="/store/<%=product._id%>/buy" method="POST">
+                <input type="submit" value="BUY" />
+            </form>
+
+            <% } else { %>
+                OUT OF STOCK <% } %>
+    </div>
+</body>
+
+</html>
